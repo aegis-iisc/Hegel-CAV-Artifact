@@ -112,9 +112,9 @@ qualifier sfst : spair :-> string;
 qualifier ssnd : spair :-> string;
 qualifier smem : char :-> string :-> bool;
 
-goal : (s : string) -> (c : char) -> { v : spair |
-                                      f = sfst (v) /\ sn = ssnd (v) /\
-                                       smem (c, f) = true  /\
-                                \(u : char). smem (u, f) = true => smem (u , s) = true /\
-                                \(u : char). smem (u, sn) = true => smem (u, s) = true };
-
+goal : (a1:int) -> (a2:int) ->  (a3:{ v1 : [int] | not (a1 > llen (v1)) /\ not (a2 > llen (v1))}) ->
+{v : [int] | \(u : int). (lmem (v, u) = true => 
+                      lmem (a3, u) = true) /\
+                      llen (v) == llen (a3) + 2 /\
+                      nth (a3, a1) == pen (v) /\
+                      nth (a3, a2) == last (v)};

@@ -151,12 +151,8 @@ remove :
   (u  : string) ->
     {v : [nlrecord] | nlmem(v, n, u) = false};
 
-goal :
-	(sr : [srpair]) -> 
-	(dtable : [int]) -> 		
-	(d : { v : int | true}) -> 
-	(x : { v : int | true}) -> 		
-		{v : ([srpair] * [int]) | device (snd (v), x) = true /\ 
-                cansend (fst (v), d, x) = true /\ 	
-                \(d1 : int), (d2 : int). is_central (d1) => not is_central d2 /\ 
-                central (fst (v), d) = true };
+goal : 
+  (n  : string) -> (u : string) -> 
+  (d : [nlrecord]) -> 
+  {v : [nlrecord] |  subscribed (v, n, u) = false /\ nlmem (v, n, u) = false
+  /\ promotions (v, u) = true => (email (v, u) = true)};

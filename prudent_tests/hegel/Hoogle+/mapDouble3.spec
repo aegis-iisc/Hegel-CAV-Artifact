@@ -137,6 +137,6 @@ goal: p, q : (f : (x : int) -> { v : int | p}) ->
                     (l : [int]) -> 
                       {v : [int] | \(u : int). mem (u , v) = true => 
                                     \( w : int ). mem (w, l) = true => 
-                                    \ (z : int).  q (z) = true /\ p (w) = true  
+                                    \(z : int).  q (z) = true /\ p (w) = true  
                       }
                           

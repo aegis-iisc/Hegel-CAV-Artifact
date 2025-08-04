@@ -528,6 +528,7 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
     let spec = List.hd specs_path in 
    
     let potentialChoices = Gamma.lambdas4RetType gamma spec in 
+    (* let potentialChoices = gamma  in  *)
     
     
     (*Add pure functions and constructors as well in the choice*)
@@ -537,6 +538,7 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
    
     let incoming_currentApp = !currentApp in 
       let rec choice potentialChoices gamma sigma delta synthesizedexps = 
+        let _ = Message.show ("##################Called Choice ################################################") in 
         match potentialChoices with 
           | [] -> (gamma, synthesizedexps) 
              (*no more effectful components try pure function/constructor application*)
@@ -590,14 +592,6 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
                         (*Currently the argument is always a scalar/Base Refinement*)
                         Message.show (" *************** Synthesizing Args ei : ti for ************"^(Var.toString vi));
                         
-
-                        (* lists of terms which can be used as argument *)    
-                        (* let e_potential_args_list =  
-                            List.map (fun (argi, argtyi) -> 
-                                let scalars = esynthesizeScalar depth gamma sigma delta [argtyi;retty] in 
-                                let (_, funapps) = esynthesizePureApp (depth + 1) gamma sigma delta [argtyi;retty] in 
-                                List.concat [scalars;funapps]
-                            ) args_ty_list  in  *)
 
                         let (gamma, _, e_potential_args_list) =  
                             List.fold_left (fun (_g, i, pot_arg_list) (argi, argtyi) -> 
@@ -810,7 +804,7 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
                                             Message.show (" The Choice of Function "^(Var.toString vi)^" Was Successfull for "^(RefTy.toString spec)^" Continuing for completeness");
                                             Message.show (" ###################################################");    
                                             
-                                            (gamma, correctExpressions)
+                                            (* (gamma, correctExpressions) *)
                                             (* if (!issizedbst) then  *)
                                             (* if (String.equal !benchmark "Poirot_sizedbst.spec") then  
                                                 (* let _ =  raise (SynthesisException "Forced") in  *)
@@ -818,7 +812,7 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
                                             else   
                                                 choice xs gamma sigma delta  (List.append synthesizedexps correctExpressions)
       *)
-                                            (* (gamma, (List.append synthesizedexps correctExpressions))                        *)
+                                            (gamma, (List.append synthesizedexps correctExpressions))                       
                                             (* if (List.length synthesizedexps > 2) then 
                                                 (gamma, (List.append synthesizedexps correctExpressions))
                                             else  *)
@@ -924,7 +918,7 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
                                         Message.show (" ###################################################");    
                                         Message.show (" The Choice of Function "^(Var.toString vi)^" Was Succefull for "^(RefTy.toString spec)^" Continuing for completeness");
                                         Message.show (" ###################################################");    
-                                        (gamma, pureappexps)
+                                        (* (gamma, pureappexps) *)
                                         (* if (!issizedbst) then 
                                         if (String.equal !benchmark "Poirot_sizedbst.spec")  then    
                                             (* let _ = raise (SynthesisException "Forced") in   *)
@@ -936,7 +930,7 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
                                             (gamma, (List.append synthesizedexps pureappexps))
                                         else 
                                             choice xs gamma sigma delta  (List.append synthesizedexps pureappexps) *)
-                                        (* (gamma, (List.append synthesizedexps pureappexps)) *)
+                                        (gamma, (List.append synthesizedexps pureappexps))
                                         (* (gamma, pureappexps) EXT : Even in this case we need to look for all the terms *)
 
                         ) (*END1*)  
@@ -971,7 +965,6 @@ and esynthesizeConsApp depth gamma sigma delta specs_path : Syn.typedMonExp opti
         match potentialChoices with 
             | [] -> 
                 Message.show ("Show No more choices for ConsApp");
-                
                 None 
              (*no more effectful components try pure function/constructor application*)
             | (vi, rti) :: xs ->

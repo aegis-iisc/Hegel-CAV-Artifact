@@ -108,27 +108,14 @@ take : (n : int) -> (l : [int]) -> { v : [int] | \(u : int).
                                             (lmem (v, u) = true) => lmem (l, u) = true}; 
 
  
-goal p : (f : (x : int) -> { v : int | p (v) = true}) -> 
-      (n : int) -> 
-      (m : int) -> 
-      (fuel :  { v : int | v = n}) -> 
-      {v : int | fuel = 0 /\ p (v-m) = true}  
+
+goal : (a1:int) -> (a2:int) ->  (a3:{ v1 : [int] | not (a1 > llen (v1)) /\ not (a2 > llen (v1))}) ->
+{v : [int] | \(u : int). (lmem (v, u) = true => 
+                      lmem (a3, u) = false) /\
+                      llen (v) == llen (a3) + 2 /\
+                      nth (a3, a1) == pen (v) /\
+                      nth (a3, a2) == last (v)};
 
 
-goal p : (f : (x : int) -> { v : int | p (v) = true}) -> 
-        (n : int) -> 
-        (m : int) -> 
-        (fuel :  { v : int | v = n}) -> 
-        {v : int | fuel = -1 /\ p (v-m) = true}  
-  
-
-
-  goal p : (f : (x : int) -> { v : int | p (v) = true}) -> 
-          (n : int) -> 
-          (m : int) -> 
-          (fuel :  { v : int | v = n}) -> 
-          {v : int | fuel = -1 /\ p (v-m) = true}  
-            
-  
         
   

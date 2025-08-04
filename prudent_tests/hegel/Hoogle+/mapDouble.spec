@@ -115,11 +115,11 @@ qualifier p : int :-> int :-> bool;
 qualifier q : int :-> int :-> bool;
 
 
-goal: (f : (x : int) -> { v : int | p (x, v) = true}) -> 
-            (g : (x : int) -> { v : int | q (x, v) = true}) -> 
-            (l : [int]) -> 
-              {v : [int] | \(u : int), (w : int), (z : int), (l1: [int]). 
-                            (lmem (u, l) = true /\ lmem (z , v) = true /\ 
-                            lmem (w, l1) = true) => 
-                            ( p (u , w) = true /\ q (w , z) = true )
-              };
+
+goal : (a1:int) -> (a2:int) ->  (a3:{ v1 : [int] | not (a1 > llen (v1)) /\ not (a2 > llen (v1))}) ->
+{v : [int] | \(u : int). (lmem (v, u) = true => 
+                      lmem (a3, u) = true) /\
+                      llen (v) == llen (a3) + 2 /\
+                      nth (a3, a1) == pen (v) /\
+                      nth (a3, a2) == last (v)};
+

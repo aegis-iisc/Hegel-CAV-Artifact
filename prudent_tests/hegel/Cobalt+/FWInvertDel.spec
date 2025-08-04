@@ -1,5 +1,6 @@
 type fwstate;
 type srpair;
+type respair;
 
 type nlrecord;
 type user;
@@ -36,6 +37,9 @@ qualifier articles : nlrecord :-> [string];
 qualifier email : [nlrecord] :-> user :-> bool;
 qualifier promotions : [nlrecord] :-> user :-> bool;
 
+
+qualifier resl : respair :-> [srpair];
+qualifier resr : respair :-> [int];
 
 add_device :
   (dtable : [int]) -> 
@@ -153,10 +157,19 @@ remove :
 
 
 
+
+qualifier slen : [a] :-> int;
+qualifier ord : int :-> int :-> [int] :-> bool;
+qualifier p : int :-> int :-> bool;
+qualifier q : int :-> int :-> bool;
+
+
+
 goal: 
   (sr : [srpair]) -> 
 	(dtable : [int]) -> 			
-	{v : ([srpair]*[int]) | 
-		\(d1:int). (d2:int) -> cansend (sr, d1,d2) = true => cansend (fst (v), d2, d1) = true /\
-        \(d : int). device (dtable, d) = true => device (snd (v), d) = true
+	{v : respair| 
+    \(f : [srpair]), (s : [int]), (d1:int), (d2:int), (d : int).
+    cansend (sr, d1,d2) = true => cansend (f, d2, d1) = true /\
+         device (dtable, d) = true => device (s, d) = true
     };	

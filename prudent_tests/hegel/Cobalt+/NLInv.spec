@@ -151,13 +151,14 @@ remove :
   (u  : string) ->
     {v : [nlrecord] | nlmem(v, n, u) = false};
 
-(*remove the current user and nlmaining the invariant given in the query*)
-goal : (D : {v: [nlrecord] |  nlmem (v , n , u) = true /\ subscribe (v, n, u) = false}) -> 
-                        (n  : { v : nl  | true}) -> 
-		                (u : { v : user | true}) ->
+goal : (nl : {v: [nlrecord] |  nlmem (v , n , u) = true /\ subscribe (v, n, u) = false}) -> 
+       (n  : string) -> 
+		  (u : { v : user | true}) ->
                         {v : [nlrecord] |
-                                nlmem (v, n, u) = true /\
-                                subscribe (v, n, u) = true /\
-                                 (\forall n1, n2: nl, u : user. ( [n1 != n2] /\ subscribe (v, n1, u) = true)  => subscribe (v, n2, u) = false)  /\
-                                 (\forall n : nl. (n \in newsletters (v) => subsize (v, n) >= 1))
+                                \(n1 : string), (n2: string).
+                                (nlmem (v, n, u) = true /\
+                                subscribe (nl, n, u) = true /\
+                                not [n1 = n2] /\ 
+                                subscribe (nl, n1, u) = true)  => 
+                                subscribe (nl, n2, u) = false
                                  };

@@ -9225,20 +9225,3 @@ RelSpec {  SRs ;  PRs ;  TSs
  *************************
  Failed without Result : 
  ************************* : 
-
-
-
-goal :: x:Int -> xs:List Int -> u:Int -> {Int|_v == u + 1 && sel xs x == u}
-./synquid/test/hegel/nth.sq:53: Error:
-  Cannot match shape 'Int'
-  with shape '_'
-  when checking goal ::
-  X2:_ -> X1:_ -> X0:_ -> _ in
-  \x . \xs . \u . 
-        match goal ?? ?? ?? with
-
-
-
-
-
-goal :: n:Int -> z:List a -> {List a|len _v == n - 1}

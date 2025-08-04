@@ -1,5 +1,6 @@
 type fwstate;
 type srpair;
+type respair;
 
 type nlrecord;
 type user;
@@ -36,6 +37,8 @@ qualifier articles : nlrecord :-> [string];
 qualifier email : [nlrecord] :-> user :-> bool;
 qualifier promotions : [nlrecord] :-> user :-> bool;
 
+qualifier resl : respair :-> [srpair];
+qualifier resr : respair :-> [int];
 
 add_device :
   (dtable : [int]) -> 
@@ -150,15 +153,26 @@ remove :
   (n  : string) ->
   (u  : string) ->
     {v : [nlrecord] | nlmem(v, n, u) = false};
+
+
+qualifier slen : [a] :-> int;
+qualifier ord : int :-> int :-> [int] :-> bool;
+qualifier p : int :-> int :-> bool;
+qualifier q : int :-> int :-> bool;
+
+
+
 goal: 
   (sr : [srpair]) -> 
 	(dtable : [int]) -> 			
 	(d : { v : int | true}) -> 
 	(x : { v : int | true }) -> 	
 
-	{v : ([srpair]*[int]) | 
-		device (snd (v), d) = false /\
-		device (snd (v), x) = true  /\
-		central (fst (v), d) = false /\
-		central (fst (v), x) = true 
+	{v : respair| 
+    \(f : [srpair]), (s : [int]).
+    (resl (v) = f /\ resr (v) = s) => 
+		device (s, d) = false /\
+		device (s, x) = true  /\
+		central (f, d) = false /\
+		central (f, x) = true 
   };	

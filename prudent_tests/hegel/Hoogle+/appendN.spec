@@ -107,4 +107,12 @@ take : (n : int) -> (l : [int]) -> { v : [int] | \(u : int).
                                             llen (v) == n /\ 
                                             (lmem (v, u) = true) => lmem (l, u) = true}; 
 
-goal : (x : int) -> (xs : [a]) -> { v : [a] | \(u : a). mem (u, xs) = true => mem (u, v) = true /\ count (u, v) = size (v) = x};
+
+
+goal : (a1:int) -> (a2:int) ->  (a3:{ v1 : [int] | not (a1 > llen (v1)) /\ not (a2 > llen (v1))}) ->
+{v : [int] | \(u : int). (lmem (v, u) = true => 
+                      lmem (a3, u) = true) /\
+                      llen (v) == llen (a3) + 5 /\
+                      nth (a3, a1) == pen (v) /\
+                      nth (a3, a2) == last (v)};
+

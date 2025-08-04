@@ -1,5 +1,6 @@
 type fwstate;
 type srpair;
+type strnlrpair;
 
 type nlrecord;
 type user;
@@ -35,6 +36,9 @@ qualifier articles : nlrecord :-> [string];
 
 qualifier email : [nlrecord] :-> user :-> bool;
 qualifier promotions : [nlrecord] :-> user :-> bool;
+
+qualifier resl : strnlrpair :-> [string];
+qualifier resr : strnlrpair :-> [nlrecord];
 
 
 add_device :
@@ -151,11 +155,9 @@ remove :
   (u  : string) ->
     {v : [nlrecord] | nlmem(v, n, u) = false};
 
-goal : (n  : { v : nl  | true}) -> (u : { v : user | true}) -> 
-  (D : {v: [nlrecord] |  mem (v , n , u) = true}) -> 
-  
-  {v : ([string] * [nlrecord]) |  mem (fst (v), articles (snd (v))) = true 
-  /\ subscribed (snd (v), n, u) = false /\ nlmem (snd (v), n, u) = false 
-  /\ promotions (snd (v), u) = true => (email (snd (v), u) = true)};
-  
 
+goal : 
+  (n  : string) -> (u : string) -> 
+  (d : [nlrecord]) -> 
+  {v : [nlrecord] |  subscribed (v, n, u) = false /\ nlmem (v, n, u) = false
+  /\ promotions (v, u) = true => (email (v, u) = true)};
