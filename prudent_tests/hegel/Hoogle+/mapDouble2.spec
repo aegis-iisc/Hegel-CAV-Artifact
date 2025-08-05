@@ -114,29 +114,14 @@ qualifier ord : int :-> int :-> [int] :-> bool;
 
 
 
-goal: p, q : (f : (x : int) -> { v : int | p}) -> 
-            (g : (x : int) -> { v : int | q}) -> 
-            (l : [int]) -> 
+goal : (fuel : int) ->  
+        (f : (x : int) -> { v : int | p (x, v) = true }) -> 
+        (g : (x : int) -> { v : int | q (x, v) = true}) -> 
+        (l : [int]) -> 
               {v : [int] | \(u : int). mem (u , v) = true => 
                             \( w : int ). mem (w, l) = true => 
-                            \(z : int).   p (z) = true /\ q (w) = true  
-              }
+                            \(z : int).   p (z, u) = true /\ q (w, u) = true  
+              };
 
-    goal: p, q : (f : (x : int) -> { v : int | p}) -> 
-                (g : (x : int) -> { v : int | q}) -> 
-                (l : [int]) -> 
-                  {v : [int] | \(u : int). mem (u , v) = true => 
-                                \( w : int ). mem (w, l) = true => 
-                                \ (z : int).  q (z) = true /\ p (w) = true  
-                  }
-    
-
-
-    goal: p, q : (f : (x : int) -> { v : int | p}) -> 
-                    (g : (x : int) -> { v : int | q}) -> 
-                    (l : [int]) -> 
-                      {v : [int] | \(u : int). mem (u , v) = true => 
-                                    \( w : int ). mem (w, l) = true => 
-                                    \ (z : int).  q (z) = true /\ p (w) = true  
-                      }
-                          
+   
+                       

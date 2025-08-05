@@ -77,7 +77,7 @@ append : (l1 : [int]) ->  (l2 : [int]) -> { v : [int] |
             pen (v) == pen (l2)
         };
 
-combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (l2)}) -> 
+combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (v)}) -> 
         {v : [ipair] | \(H : ipair), (L : ipair).
             pllen (v) == pllen (l1) /\
             plhd  (v) = H  /\
@@ -107,23 +107,17 @@ take : (n : int) -> (l : [int]) -> { v : [int] | \(u : int).
                                             llen (v) == n /\ 
                                             (lmem (v, u) = true) => lmem (l, u) = true}; 
 
- goal : (fs : {v : [Int -> Int] | \(u : Int -> Int). mem (u, v) => ltten (v)}) -> (x : Int) -> 
-{v : [Int] | \(u : Int). mem (u, v) => u <= 10};  
+qualifier p : int :->  bool;
 
-goal p : (f : (x : int) -> { v : int | p (v) = true}) -> 
+goal :   (fuel :  { v : int | v = n}) -> 
+       
         (n : int) -> 
+        (f : (x : int) -> { v : int | p (v) = true}) -> 
+       
         (m : int) -> 
-        (fuel :  { v : int | v = n}) -> 
-        {v : int | fuel = -1 /\ p (v-m) = true}  
+        {v : int | \(vm : int). (vm = v -- m) /\ (fuel == 0) =>  p (vm) = true};  
   
 
-
-  goal p : (f : (x : int) -> { v : int | p (v) = true}) -> 
-          (n : int) -> 
-          (m : int) -> 
-          (fuel :  { v : int | v = n}) -> 
-          {v : int | fuel = -1 /\ p (v-m) = true}  
-            
   
         
   

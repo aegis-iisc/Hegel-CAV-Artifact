@@ -77,17 +77,16 @@ append : (l1 : [int]) ->  (l2 : [int]) -> { v : [int] |
             pen (v) == pen (l2)
         };
 
-combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (l2)}) -> 
+combine : (l3 : [int]) ->  (l4 : {v : [int] | llen (l3) == llen (v)}) -> 
         {v : [ipair] | \(H : ipair), (L : ipair).
             pllen (v) == pllen (l1) /\
             plhd  (v) = H  /\
             pllast (v) = L /\
-            ppr1 (H) == lhd (l1) /\
-            ppr2 (H) == lhd (l2) /\
-            ppr1 (L) == last (l1) /\
-            ppr2 (L) == last (l2) 
+            ppr1 (H) == lhd (l3) /\
+            ppr2 (H) == lhd (l4) /\
+            ppr1 (L) == last (l3) /\
+            ppr2 (L) == last (l4) 
         };
-
 
 splitAt : (y:int) -> (l : { v : [int] | llen (v) > y}) -> 
                 {v:plist | \(H : [int]), (L : [int]).
@@ -107,5 +106,9 @@ take : (n : int) -> (l : [int]) -> { v : [int] | \(u : int).
                                             llen (v) == n /\ 
                                             (lmem (v, u) = true) => lmem (l, u) = true}; 
 
-goal : (xs : int) -> y : (int, int) -> {v : bool | [v=true] <=> mem (fst (y), xs) = true /\
- mem (snd (y), xs) = true };
+goal : (xs : int) -> (y : ipair) -> 
+{v : bool | \(f : int), (s : int). (fst (v) = f /\ snd (v) = s) => 
+     ([v=true] <=> mem (f, xs) = true /\
+        mem (s , xs) = true) };
+
+((**This has some solver error))

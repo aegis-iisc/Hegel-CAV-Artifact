@@ -35,17 +35,7 @@ class BenchmarkGroup:
 #TODO:: Updtae the benchmarks
 ALL_BENCHMARKS = [
   BenchmarkGroup("Hegel",  [
-     #RQ2 
-    Benchmark('hegel/Cobalt+/NLRRemove', 'NLR Remove'),
-    Benchmark('hegel/Cobalt+/FWInvertDel', 'FW Invert Del'),
-    Benchmark('hegel/Cobalt+/FWInsert', 'FW Insert'),
-    Benchmark('hegel/Cobalt+/FWInvert', 'FW Invert'),
-    Benchmark('hegel/Cobalt+/NLInsert', 'NL Insert'),
-    Benchmark('hegel/Cobalt+/FWMkCentral', 'FW Mk Central'),
-    Benchmark('hegel/Cobalt+/NLInv', 'NL Inv'),
-    Benchmark('hegel/Cobalt+/NLRemove', 'NL Remove'),
-    Benchmark('hegel/Cobalt+/FWInsCons', 'FW Ins Cons'),
-      #RQ1 
+     #RQ1 
     Benchmark('hegel/Hoogle+/revAppend', 'Rev Append'),
     Benchmark('hegel/Hoogle+/nth', 'Nth'),
    
@@ -62,6 +52,18 @@ ALL_BENCHMARKS = [
     Benchmark('hegel/Hoogle+/appendN', 'Append N'),
     Benchmark('hegel/Hoogle+/lookUpRange', 'Look Up Range'),
    
+   
+     #RQ2 
+    Benchmark('hegel/Cobalt+/NLRRemove', 'NLR Remove'),
+    Benchmark('hegel/Cobalt+/FWInvertDel', 'FW Invert Del'),
+    Benchmark('hegel/Cobalt+/FWInsert', 'FW Insert'),
+    Benchmark('hegel/Cobalt+/FWInvert', 'FW Invert'),
+    Benchmark('hegel/Cobalt+/NLInsert', 'NL Insert'),
+    Benchmark('hegel/Cobalt+/FWMkCentral', 'FW Mk Central'),
+    Benchmark('hegel/Cobalt+/NLInv', 'NL Inv'),
+    Benchmark('hegel/Cobalt+/NLRemove', 'NL Remove'),
+    Benchmark('hegel/Cobalt+/FWInsCons', 'FW Ins Cons')
+    
    ]),    
 ]
 # TODO Add benchmarks 
@@ -345,4 +347,5 @@ if __name__ == '__main__':
       f.write (str(csvres[row]))   
       f.write ('\n')
     f.close ()    
+
 

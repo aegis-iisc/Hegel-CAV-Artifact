@@ -762,9 +762,15 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
                                                              
                                                         | None ->   
                                                             let () = Printf.printf "%s" ("\n Typechecking "^(Syn.monExp_toString (Syn.expand (!lbindings) synthesizedExp))) in 
-                                                            let () = Printf.printf "%s" ("\n Against "^(RefTy.toString spec)) in 
+                                                            let () = Printf.printf "%s" ("\n  Against "^(RefTy.toString spec)) in 
     
-                                                            let funAppType =  SynTC.typecheck _g sigma delta !typenames !qualifiers synthesizedExp spec in 
+                                                            let funAppType =  
+                                                            try
+                                                                SynTC.typecheck _g sigma delta !typenames !qualifiers synthesizedExp spec 
+                                                            with 
+                                                                | _  ->
+                                                                     None
+                                                            in     
                                                             (match funAppType with 
                                                                  | Some type4AppliedMonExp -> 
                                                                        Message.show (" Show *************** TypeChecking Succsessful "^(RefTy.toString type4AppliedMonExp));
@@ -879,7 +885,13 @@ let rec esynthesizePureApp depth gamma sigma delta specs_path : (Gamma.t * (Syn.
                                                 | None ->     
                                                     let () = Printf.printf "%s" ("\n Typechecking "^(Syn.monExp_toString (Syn.expand (!lbindings) synthesizedExp))) in 
                                                     let () = Printf.printf "%s" ("\n Against "^(RefTy.toString spec)) in 
-                                                    let funAppType =  SynTC.typecheck _g sigma delta !typenames !qualifiers synthesizedExp spec in 
+                                                    let funAppType =  
+                                                    try 
+                                                        SynTC.typecheck _g sigma delta !typenames !qualifiers synthesizedExp spec  
+                                                    with 
+                                                        | _-> 
+                                                            None       
+                                                    in     
                                                     (match funAppType with 
                                                         | Some type4AppliedMonExp -> 
                                                              Message.show (" Show *************** TypeChecking Succsessful "^(RefTy.toString type4AppliedMonExp));
@@ -973,7 +985,12 @@ and esynthesizeConsApp depth gamma sigma delta specs_path : Syn.typedMonExp opti
                 match rti with 
                     | RefTy.Base (_,_,_) -> 
                         let appliedConsMonExp = Syn.Ecapp (vi, []) in  (*apply vi e_arg*)
-                        let consAppType =  SynTC.typecheck gamma sigma delta !typenames !qualifiers appliedConsMonExp spec in 
+                        let consAppType =  
+                        try    
+                            SynTC.typecheck gamma sigma delta !typenames !qualifiers appliedConsMonExp spec 
+                        with 
+                            | _ -> None
+                        in         
                         (match consAppType with 
                             | Some type4AppliedMonExp -> 
                                     Message.show (" Show *************** TypeChecking Nullay Cosntructor Succsessful "^(RefTy.toString type4AppliedMonExp));
@@ -1015,7 +1032,13 @@ and esynthesizeConsApp depth gamma sigma delta specs_path : Syn.typedMonExp opti
                                                let ei_hds = List.map (fun ei_list -> List.hd (ei_list)) es  in 
                                                let monExps_es = List.map (fun ei -> ei.expMon) ei_hds in 
                                                let appliedConsMonExp = Syn.Ecapp (vi, monExps_es) in  (*apply vi e_arg*)
-                                               let consAppType =  SynTC.typecheck gamma sigma delta !typenames !qualifiers appliedConsMonExp spec in 
+                                               let consAppType =  
+                                                try 
+                                                    SynTC.typecheck gamma sigma delta !typenames !qualifiers appliedConsMonExp spec 
+
+                                                with 
+                                                    | _ -> None
+                                                in 
                                                match consAppType with 
                                                    | Some type4AppliedMonExp -> 
                                                         Message.show (" Show *************** TypeChecking Cons App Succsessful "^(RefTy.toString type4AppliedMonExp));

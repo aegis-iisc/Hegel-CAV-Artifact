@@ -77,7 +77,8 @@ append : (l1 : [int]) ->  (l2 : [int]) -> { v : [int] |
             pen (v) == pen (l2)
         };
 
-combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (l2)}) -> 
+
+combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (v)}) -> 
         {v : [ipair] | \(H : ipair), (L : ipair).
             pllen (v) == pllen (l1) /\
             plhd  (v) = H  /\
@@ -87,7 +88,6 @@ combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (l2)}) ->
             ppr1 (L) == last (l1) /\
             ppr2 (L) == last (l2) 
         };
-
 
 splitAt : (y:int) -> (l : { v : [int] | llen (v) > y}) -> 
                 {v:plist | \(H : [int]), (L : [int]).
@@ -115,11 +115,11 @@ qualifier p : int :-> int :-> bool;
 qualifier q : int :-> int :-> bool;
 
 
-
-goal : (a1:int) -> (a2:int) ->  (a3:{ v1 : [int] | not (a1 > llen (v1)) /\ not (a2 > llen (v1))}) ->
-{v : [int] | \(u : int). (lmem (v, u) = true => 
-                      lmem (a3, u) = true) /\
-                      llen (v) == llen (a3) + 2 /\
-                      nth (a3, a1) == pen (v) /\
-                      nth (a3, a2) == last (v)};
-
+goal : (fuel : int) ->  
+        (f : (x : int) -> { v : int | p (x, v) = true }) -> 
+        (g : (x : int) -> { v : int | q (x, v) = true}) -> 
+        (l : [int]) -> 
+              {v : [int] | \(u : int). mem (u , v) = true => 
+                            \( w : int ). mem (w, l) = true => 
+                            \(z : int).   p (z, u) = true /\ q (w, u) = true  
+              };

@@ -69,23 +69,23 @@ nth : (l : [int]) -> (n : int) ->  { v : int | lmem (l, v) = true /\
             nth (l, n) == v 
         };
 
-append : (l : [int]) ->  (l' : [int]) -> { v : [int] | 
-            llen (v) == llen (l) + llen (l') /\
-            lhd (v) == lhd (l) /\
-            lsnd (v) == lsnd (l) /\
-            last (v) == last (l') /\
-            pen (v) == pen (l')
+append : (l1 : [int]) ->  (l2 : [int]) -> { v : [int] | 
+            llen (v) == llen (l1) + llen (l2) /\
+            lhd (v) == lhd (l1) /\
+            lsnd (v) == lsnd (l1) /\
+            last (v) == last (l2) /\
+            pen (v) == pen (l2)
         };
 
-combine : (l : [int]) ->  (l' : {v : [int] | llen (ll) == llen (v)}) -> 
+combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (l2)}) -> 
         {v : [ipair] | \(H : ipair), (L : ipair).
-            pllen (v) == pllen (l) /\
+            pllen (v) == pllen (l1) /\
             plhd  (v) = H  /\
             pllast (v) = L /\
-            ppr1 (H) == lhd (l) /\
-            ppr2 (H) == lhd (l') /\
-            ppr1 (L) == last (l) /\
-            ppr2 (L) == last (l') 
+            ppr1 (H) == lhd (l1) /\
+            ppr2 (H) == lhd (l2) /\
+            ppr1 (L) == last (l1) /\
+            ppr2 (L) == last (l2) 
         };
 
 
@@ -107,13 +107,28 @@ take : (n : int) -> (l : [int]) -> { v : [int] | \(u : int).
                                             llen (v) == n /\ 
                                             (lmem (v, u) = true) => lmem (l, u) = true}; 
 
-goal : (x:int) 
--> (y : int) 
--> (xs : [int]) 
--> { v : plist | 
-\(f : [int]), (sn : [int]). 
-f = fst (v) /\ sn = snd (v) => 
-(not (len (f) > x) 
-/\ not (len (sn) >  len (xs) - y) \/ len (sn) == 0 
-/\ \(u : a). mem (f, u) = true => mem (xs, u) = true 
-/\ \(u : a). mem (sn, u) = true => mem (xs, u) = true)};
+ 
+goal p : (f : (x : int) -> { v : int | p (v) = true}) -> 
+      (n : int) -> 
+      (m : int) -> 
+      (fuel :  { v : int | v = n}) -> 
+      {v : int | fuel = 0 /\ p (v-m) = true}  
+
+
+goal p : (f : (x : int) -> { v : int | p (v) = true}) -> 
+        (n : int) -> 
+        (m : int) -> 
+        (fuel :  { v : int | v = n}) -> 
+        {v : int | fuel = -1 /\ p (v-m) = true}  
+  
+
+
+  goal p : (f : (x : int) -> { v : int | p (v) = true}) -> 
+          (n : int) -> 
+          (m : int) -> 
+          (fuel :  { v : int | v = n}) -> 
+          {v : int | fuel = -1 /\ p (v-m) = true}  
+            
+  
+        
+  

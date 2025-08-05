@@ -77,7 +77,7 @@ append : (l1 : [int]) ->  (l2 : [int]) -> { v : [int] |
             pen (v) == pen (l2)
         };
 
-combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (l2)}) -> 
+combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (v)}) -> 
         {v : [ipair] | \(H : ipair), (L : ipair).
             pllen (v) == pllen (l1) /\
             plhd  (v) = H  /\

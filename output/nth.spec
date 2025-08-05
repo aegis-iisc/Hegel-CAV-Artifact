@@ -2,61 +2,701 @@
 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  ep  ( goal  size  ( last   ( init  a3 )  )  l )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11 a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  a2  ( goal  a1  ( last   ( init  a3 )  )  a3 )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11 a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last   ( init  a3 )  )   ( goal  a11 a2  ( init  a3 )  )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11 a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last   ( init  a3 )  )   ( goal  a2 size l )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11 a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  ep  ( init  a3 )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11 a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  a11  ( goal  size  ( last   ( init  a3 )  )  l )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  a11  ( goal  a11 a2  ( init  a3 )  )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last  a3 )   ( goal  a2 size l )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  a1  ( goal  ep a2 l )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  a2 a3 ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last  a3 )   ( goal   ( last  a3 )   ( last   ( init  a3 )  )   ( init  a3 )  )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  ep  ( goal   ( last   ( init  a3 )  )  size a3 )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  a11 a3 ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take  a1  ( goal   ( last   ( init  a3 )  )   ( last   ( init  a3 )  )  l )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last  a3 )   ( goal  ep a11  ( init  a3 )  )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last   ( init  a3 )  )   ( goal  a2 a2 a3 )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last  a3 )   ( goal  size  ( last   ( init  a3 )  )  l )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last  a3 )   ( goal  a2 a2 a3 )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last  a3 )   ( goal   ( last   ( init  a3 )  )   ( last   ( init  a3 )  )  l )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
  (* Program *) 
 let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
- 	  ( take   ( last  a3 )   ( goal   ( last  a3 )   ( last  a3 )  a3 )  ) 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )   ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )   ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )   ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )   ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )   ( last  a3 )   ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2 a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2 a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2 a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2 a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2 a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )  a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )  a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )  a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )  a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11  ( last  a3 )  a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2 a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2 a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2 a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2 a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a2 a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1 a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1 a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1 a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1 a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a1 a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a1  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  size a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 a2  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal  a11 ep  ( init  a3 )  )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11 a3 )  
+ else 
+ 	 ( goal  a11 a2 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11 a3 )  
+ else 
+ 	 ( goal  a11 a2  ( init  a3 )  ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11 a3 )  
+ else 
+ 	 ( goal  a11 a11 a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11 a3 )  
+ else 
+ 	 ( goal  a11 ep a3 ) 
+ (* Program *) 
+let rec goal    (a1 : int)  (a2 : int)  (a3 : Ty_list int) : (Ty_list int) = 
+ 	 if (  ( null  a3 )  ) 
+ then 
+ 	  ( goal   ( null  a3 )  a11 a3 )  
+ else 
+ 	 ( goal  a11 ep  ( init  a3 )  ) 

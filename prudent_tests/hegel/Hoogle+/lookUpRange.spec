@@ -77,7 +77,7 @@ append : (l1 : [int]) ->  (l2 : [int]) -> { v : [int] |
             pen (v) == pen (l2)
         };
 
-combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (l2)}) -> 
+combine : (l1 : [int]) ->  (l2 : {v : [int] | llen (l1) == llen (v)}) -> 
         {v : [ipair] | \(H : ipair), (L : ipair).
             pllen (v) == pllen (l1) /\
             plhd  (v) = H  /\
@@ -106,5 +106,17 @@ init : (l : [int]) -> { v : [int] | llen (v) == llen (v) --1};
 take : (n : int) -> (l : [int]) -> { v : [int] | \(u : int). 
                                             llen (v) == n /\ 
                                             (lmem (v, u) = true) => lmem (l, u) = true}; 
+type a;
+type b;
+type abpair;
+qualifier abpairmem : a :-> b :-> [abpair] :-> bool;
 
-goal = (l : [(a,b)]) -> (k : b) ->  -> {v : a | \(u: int). mem (u, k, l) = false => not (v = k)}
+
+
+qualifier slen : [a] :-> int;
+qualifier ord : int :-> int :-> [int] :-> bool;
+
+
+goal : (l : [abpair]) -> 
+            (k : b) -> 
+            {v : v | \(u: a). mem (u, k, l) = false => not [v = k]};
