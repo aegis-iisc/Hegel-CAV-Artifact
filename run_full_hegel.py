@@ -33,8 +33,8 @@ class BenchmarkGroup:
     self.name = name              # Id
     self.benchmarks = benchmarks  # List of benchmarks in this group
 #TODO:: Updtae the benchmarks
-ALL_BENCHMARKS = [
-  BenchmarkGroup("Hegel",  [
+HEGEL_BENCHMARKS = [
+  BenchmarkGroup("RQ1",  [
      #RQ1 
     Benchmark('hegel/Hoogle+/revAppend', 'Rev Append'),
     Benchmark('hegel/Hoogle+/nth', 'Nth'),
@@ -51,8 +51,8 @@ ALL_BENCHMARKS = [
     Benchmark('hegel/Hoogle+/revZip', 'Rev Zip'),
     Benchmark('hegel/Hoogle+/appendN', 'Append N'),
     Benchmark('hegel/Hoogle+/lookUpRange', 'Look Up Range'),
-   
-   
+   ]),
+   BenchmarkGroup("RQ2",  [
      #RQ2 
     Benchmark('hegel/Cobalt+/NLRRemove', 'NLR Remove'),
     Benchmark('hegel/Cobalt+/FWInvertDel', 'FW Invert Del'),
@@ -85,18 +85,12 @@ Hplus_BENCHMARKS = [
     ]),    
 ]
 
-class SynthesisResultRQ2:
-    def __init__(self, tool, name, time, spec_size, code_size, branches):
+class SynthesisResult:
+    def __init__(self, tool, name, time):
         self.name = name
         self.tool = tool
         self.time = time        
-        # self.time_hegel_s = time_hegel_s
-        # self.time_hegel_p = time_hegel_p
-        # self.time_hegel_a = time_hegel_a
-        self.spec_size = spec_size
-        self.code_size = code_size
-        self.branches = branches
-    
+        
     def __str__(self):
         return self.name + ', ' + self.tool + ', ' + '{0:0.2f}'.format(self.time) 
               # str(self.code_size) + ', ' + str(self.spec_size) + ', ' + str(self.branches)
@@ -164,16 +158,24 @@ def run_benchmark_variants(file, variant):
     #read_csv()
 
 
-def run_benchmark_hegel(file):
+def run_benchmark_hegel(file, group):
   '''Run single benchmark'''
   cpu_time = 0
   with open(RESULTS, "a") as outfile:
     print ('Running Hegel', file)
     usage_start = resource.getrusage(resource.RUSAGE_CHILDREN)
     try:
-        run(['/usr/bin/time', prudent,  '-bi', '-cdcl', '-k', '2', file], timeout =TIMEOUT,  stdout=outfile)
-        usage_end = resource.getrusage(resource.RUSAGE_CHILDREN)    
-        cpu_time = usage_end.ru_utime - usage_start.ru_utime    
+        if (group.name == "RQ1"):
+          print ("Benchmark Group RQ1")
+          run(['/usr/bin/time', prudent,  '-bi', '-cdcl', '-k', '2', file], timeout =TIMEOUT,  stdout=outfile)
+          usage_end = resource.getrusage(resource.RUSAGE_CHILDREN)    
+          cpu_time = usage_end.ru_utime - usage_start.ru_utime    
+        else: 
+          print ("Benchmark Group RQ2")
+          run(['/usr/bin/time', prudent,  '-bi', '-cdcl', '-k', '4', file], timeout =TIMEOUT,  stdout=outfile)
+          usage_end = resource.getrusage(resource.RUSAGE_CHILDREN)    
+          cpu_time = usage_end.ru_utime - usage_start.ru_utime    
+
     except TimeoutExpired:
         cpu_time = 1000        
     with open(TIMERESULTS, 'a') as f:
@@ -248,14 +250,11 @@ def run_benchmark_hoogle(json_file):
 def test_hegel():
   '''Test all enabled configurations of each benchmark'''
   csvresults = dict()
-  for group in groups:
+  for group in hegel_tests:
     for b in group.benchmarks:
       test = TEST_DIR + b.name
       testFileName = test + '.spec'
       #hardcoded for test
-      codeSize = 4
-      specSize = 3
-      branches = 0
       row = dict()
       if not os.path.isfile(testFileName):
         print ("Test file not found:", testFileName)
@@ -264,9 +263,9 @@ def test_hegel():
         with open(TIMERESULTS, 'a') as f:
             f.write("\n ********************************")
             f.close ()    
-        row['hegel'] = run_benchmark_hegel(testFileName) # Run variant
+        row['hegel'] = run_benchmark_hegel(testFileName, group) # Run variant
         if not (test in csvresults):
-          csvresults[test] = SynthesisResultRQ2(test, 'Hegel', row['hegel'], codeSize, specSize, branches)  
+          csvresults[test] = SynthesisResult(test, 'Hegel', row['hegel'])  
 
   return csvresults         
        
@@ -275,14 +274,10 @@ def test_hegel():
 def test_synquid():
   '''Test all enabled configurations of each benchmark'''
   csvresults = dict()
-  for test in synquid_test:
+  for test in synquid_tests:
     for b in test.benchmarks:
       test = SYNQUID_TEST_DIR + b.name
       testFileName = test + '.sq'
-      codeSize = 4
-      specSize = 3
-      branches = 0
-      
       row = dict()
       if not os.path.isfile(testFileName):
         print ("Test file not found:", testFileName)
@@ -293,7 +288,7 @@ def test_synquid():
             f.close ()    
         row['synquid'] = run_benchmark_synquid(testFileName) # Run variant
         if not (test in csvresults):
-           csvresults[test] = SynthesisResultRQ2(test, 'Synuid', row['synquid'], codeSize, specSize, branches)  
+           csvresults[test] = SynthesisResult(test, 'Synuid', row['synquid'])  
   print(csvresults)
   return csvresults         
               
@@ -301,13 +296,10 @@ def test_synquid():
 def test_hoogle():
   '''Test HooglePlsueach benchmark'''
   csvresults = dict()
-  for test in hoogle_test:
+  for test in hoogle_tests:
     for b in test.benchmarks:
       test = TEST_DIR + b.name
       testFileName = test + '.json'
-      codeSize = 4
-      specSize = 3
-      branches = 0
       
       row = dict()
       if not os.path.isfile(testFileName):
@@ -319,7 +311,7 @@ def test_hoogle():
             f.close ()    
         row['hoogle'] = run_benchmark_hoogle(testFileName) # Run variant
         if not (test in csvresults):
-           csvresults[test] = SynthesisResultRQ2(test, 'Hoogle', row['hoogle'], codeSize, specSize, branches)  
+           csvresults[test] = SynthesisResult(test, 'Hoogle', row['hoogle'])  
   print(csvresults)
   return csvresults         
         
@@ -335,13 +327,13 @@ if __name__ == '__main__':
     os.remove(RESULTS)
     
   variants = VARIANTS
-  groups = ALL_BENCHMARKS
-  synquid_test = Synquid_BENCHMARKS
-  hoogle_test = Hplus_BENCHMARKS
+  hegel_tests = HEGEL_BENCHMARKS
+  synquid_tests = Synquid_BENCHMARKS
+  hoogle_tests = Hplus_BENCHMARKS
   csvres = dict()
   csvres = csvres | test_hegel()
-  csvres = csvres | test_synquid()
-  csvres = csvres | test_hoogle ()
+  # csvres = csvres | test_synquid()
+  # csvres = csvres | test_hoogle ()
   with open(FINALRESULTS, 'a') as f:
     for row in csvres:
       f.write (str(csvres[row]))   
