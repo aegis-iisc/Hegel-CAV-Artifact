@@ -1,1 +1,1 @@
-The Artifact for the OOPSLA-submission for Hegel.
+The Artifact for the CAV submission for Hegel.
